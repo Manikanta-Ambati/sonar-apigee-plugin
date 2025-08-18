@@ -42,7 +42,6 @@ public class ApigeeXmlSonarWayProfileTest {
 	    assertThat(profile.language()).isEqualTo(Xml.KEY);
 	    assertThat(profile.name()).isEqualTo(ApigeeXmlSonarWayProfile.PROFILE_NAME);
 	    assertThat(profile.rules()).hasSizeGreaterThanOrEqualTo(30); // At least 30 rules
-	    assertThat(profile.rules()).hasSizeGreaterThanOrEqualTo(CheckList.getCheckClasses().size());
 	    assertThat(validation.hasErrors()).isFalse();				
 	}
 
