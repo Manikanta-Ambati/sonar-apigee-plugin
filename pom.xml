@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.arkea.satd.sonar.apigee</groupId>
 	<artifactId>sonar-apigee-plugin</artifactId>
-	<version>4.0.0</version>
+	<version>3.0.3</version>
 	<name>sonar-apigee-plugin</name>
 	<packaging>sonar-plugin</packaging>
 	<description>Sonar Plugin for Apigee - Compatible with SonarQube Enterprise Edition 2025.1</description>
@@ -35,9 +35,9 @@
 	</issueManagement>
 	<properties>
 		<license.title>SonarQube Apigee Plugin</license.title>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Updated versions for SonarQube Enterprise Edition 2025.1 compatibility -->
 		<sonar.plugin.api.version>11.1.0.2693</sonar.plugin.api.version>
@@ -150,7 +150,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.13.0</version>
 				<configuration>
-					<release>11</release>
+					<release>17</release>
 				</configuration>
 			</plugin>
 			<!-- Maven Surefire Plugin for Tests -->
