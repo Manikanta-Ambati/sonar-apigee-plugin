@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.arkea.satd.sonar.apigee</groupId>
 	<artifactId>sonar-apigee-plugin</artifactId>
-	<version>3.0.3</version>
+	<version>4.0.0</version>
 	<name>sonar-apigee-plugin</name>
 	<packaging>sonar-plugin</packaging>
-	<description>Sonar Plugin for Apigee</description>
+	<description>Sonar Plugin for Apigee - Compatible with SonarQube Enterprise Edition 2025.1</description>
 	<inceptionYear>2017</inceptionYear>
-
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -19,145 +18,184 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
 	<organization>
-		<name>Manikanta Ambati</name>
+		<name>Manikanta-Ambati</name>
 		<url>https://github.com/Manikanta-Ambati</url>
 	</organization>
-
 	<developers>
 		<developer>
-			<id>AMBAT</id>
+			<id>manikanta.ambati</id>
 			<name>Manikanta Ambati</name>
-			<organization>None</organization>
+			<organization>Manikanta-Ambati</organization>
 		</developer>
 	</developers>
-
 	<issueManagement>
 		<system>GitHub Issues</system>
 		<url>https://github.com/Manikanta-Ambati/sonar-apigee-plugin/issues</url>
 	</issueManagement>
-
-	<ciManagement>
-		<system>Travis-ci</system>
-		<url>https://travis-ci.org/Manikanta-Ambati/sonar-apigee-plugin</url>
-	</ciManagement>
-
 	<properties>
 		<license.title>SonarQube Apigee Plugin</license.title>
-
-		<!-- backward compatible with LTS -->
-		<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
-
-		<sonar.version>11.1.0.2693</sonar.version>
-		<sonar-xml.version>2.2.0.2973</sonar-xml.version>
-		<sonar.analyzerCommons.version>1.28.0.1058</sonar.analyzerCommons.version>
-
-		<!-- Release: enable publication to Bintray -->
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Updated versions for SonarQube Enterprise Edition 2025.1 compatibility -->
+		<sonar.plugin.api.version>11.1.0.2693</sonar.plugin.api.version>
+		<sonar.analyzer.commons.version>2.18.0.3393</sonar.analyzer.commons.version>
+		<sonar.xml.version>2.13.0.5938</sonar.xml.version>
+		<!-- Test dependencies versions -->
+		<junit.version>5.10.2</junit.version>
+		<assertj.version>3.25.3</assertj.version>
+		<commons-io.version>2.15.1</commons-io.version>
+		<!-- Maven plugins versions -->
+		<maven.surefire.version>3.2.5</maven.surefire.version>
+		<maven.failsafe.version>3.2.5</maven.failsafe.version>
+		<sonar.packaging.plugin.version>1.23.0.740</sonar.packaging.plugin.version>
+		<!-- Release: enable publication -->
 		<artifactsToPublish>${project.groupId}:sonar-apigee-plugin:jar</artifactsToPublish>
-
 	</properties>
-
 	<dependencies>
-
+		<!-- Core SonarQube Plugin API -->
+		<dependency>
+			<groupId>org.sonarsource.api.plugin</groupId>
+			<artifactId>sonar-plugin-api</artifactId>
+			<version>${sonar.plugin.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Analyzer Commons -->
 		<dependency>
 			<groupId>org.sonarsource.analyzer-commons</groupId>
 			<artifactId>sonar-analyzer-commons</artifactId>
-			<version>${sonar.analyzerCommons.version}</version>
+			<version>${sonar.analyzer.commons.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.sonarsource.sonarqube</groupId>
-			<artifactId>sonar-plugin-api</artifactId>
-			<version>${sonar.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
+		<!-- XML Analysis -->
 		<dependency>
 			<groupId>org.sonarsource.analyzer-commons</groupId>
 			<artifactId>sonar-xml-parsing</artifactId>
-			<version>${sonar.analyzerCommons.version}</version>
+			<version>${sonar.analyzer.commons.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.sonarsource.xml</groupId>
 			<artifactId>sonar-xml-plugin</artifactId>
-			<version>${sonar-xml.version}</version>
+			<version>${sonar.xml.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- Test dependencies -->
 		<dependency>
-			<groupId>org.sonarsource.sonarqube</groupId>
-			<artifactId>sonar-plugin-api-impl</artifactId>
-			<version>${sonar.version}</version>
+			<groupId>org.sonarsource.api.plugin</groupId>
+			<artifactId>sonar-plugin-api-test-fixtures</artifactId>
+			<version>${sonar.plugin.api.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.sonarsource.analyzer-commons</groupId>
 			<artifactId>sonar-analyzer-test-commons</artifactId>
-			<version>${sonar.analyzerCommons.version}</version>
+			<version>${sonar.analyzer.commons.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.sonarsource.analyzer-commons</groupId>
 			<artifactId>test-sonar-xml-parsing</artifactId>
-			<version>${sonar.analyzerCommons.version}</version>
+			<version>${sonar.analyzer.commons.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.8.0</version>
+			<version>${commons-io.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>3.19.0</version>
+			<version>${assertj.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>junit-bom</artifactId>
-			<version>5.7.0</version>
-			<type>pom</type>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
+			<!-- SonarQube Packaging Plugin -->
 			<plugin>
 				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
 				<artifactId>sonar-packaging-maven-plugin</artifactId>
-				<version>1.18.0.372</version>
+				<version>${sonar.packaging.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 					<pluginKey>apigee</pluginKey>
 					<pluginName>Apigee</pluginName>
 					<pluginClass>com.arkea.satd.sonar.ApigeePlugin</pluginClass>
-					<pluginUrl>https://github.com/CreditMutuelArkea/sonar-apigee-plugin</pluginUrl>
+					<pluginUrl>https://github.com/Manikanta-Ambati/sonar-apigee-plugin</pluginUrl>
 					<basePlugin>xml</basePlugin>
 					<skipDependenciesPackaging>false</skipDependenciesPackaging>
 					<sonarLintSupported>false</sonarLintSupported>
-					<sonarQubeMinVersion>8.8</sonarQubeMinVersion>
+					<!-- Updated minimum version for SonarQube Enterprise Edition 2025.1 -->
+					<pluginApiMinVersion>2025.1</pluginApiMinVersion>
 				</configuration>
+			</plugin>
+			<!-- Maven Compiler Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			<!-- Maven Surefire Plugin for Tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
+				<configuration>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+				</configuration>
+			</plugin>
+			<!-- Maven Failsafe Plugin for Integration Tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven.failsafe.version}</version>
 			</plugin>
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
-			<!-- Use javac's release flag for Java 8 and higher -->
-			<id>java8+</id>
-			<activation>
-				<jdk>[8,)</jdk>
-			</activation>
-			<properties>
-				<maven.compiler.release>8</maven.compiler.release>
-			</properties>
+			<id>coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.11</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>
