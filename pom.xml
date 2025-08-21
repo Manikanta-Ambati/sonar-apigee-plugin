@@ -142,6 +142,7 @@
 					<sonarLintSupported>false</sonarLintSupported>
 					<!-- Updated minimum version for SonarQube Enterprise Edition 2025.1 -->
 					<pluginApiMinVersion>11.1.0.2693</pluginApiMinVersion>
+					<requiredForLanguages>xml</requiredForLanguages>
 				</configuration>
 			</plugin>
 			<!-- Maven Compiler Plugin -->
